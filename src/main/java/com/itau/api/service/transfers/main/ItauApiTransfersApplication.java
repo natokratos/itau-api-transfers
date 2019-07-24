@@ -8,7 +8,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @SpringBootApplication(scanBasePackages = {"com.itau.api.controller"})
 public class ItauApiTransfersApplication {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 		SpringApplication.run(ItauApiTransfersApplication.class, args);
 	}
 

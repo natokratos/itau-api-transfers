@@ -11,7 +11,7 @@ import com.itau.core.service.client.TransfersClientImpl;
 @RequestMapping("/transfers")
 public class TransfersController {
 	@PostMapping(value = "/send")
-	public void postCreate(Transfer transfer) {
+	public void postCreate(String customerId, String authorization, Transfer transfer) {
 		TransfersClientImpl transfersClientImpl = new TransfersClientImpl();
 		transfersClientImpl.getTransfersImplPort().postCreate(transfer);
 	}
