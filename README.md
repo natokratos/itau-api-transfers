@@ -9,6 +9,12 @@ Requisitos para desenvolvimento
 - SOAP UI versão mais atual
 - IDE para Desenvolvimento: STS, Eclipse ou IntelliJ
 - Criar um diretório na estação chamado workpsace que conterá os códigos-fonte
+- Editar o arquivo /etc/hosts e adicionar os seguintes IP's
+	
+	127.0.0.1       itau-core
+	127.0.0.1       itau-api-gateway
+	127.0.0.1       itau-api-accounts
+	127.0.0.1       itau-api-transfers
 
 # Baixar o código-fonte
 
@@ -41,7 +47,49 @@ Requisitos para desenvolvimento
 
 # Rodando a aplicação no Docker
 
-aaaa
+- A aplicação já deve estar compilada para que funcione no Docker, veja na seção "Compilar a Aplicação"
+
+- Via linha de comando, mudar para o diretório src/main/docker
+
+- Executar o comando a seguir. Caso apareça um erro dizendo que já existe, apenas ignore e continue no item abaixo:
+
+	docker network create itau-micro-net
+
+- Executar o comando a seguir:
+
+	docker build -t itau-api-transfers . 
+	
+- Veja se aparece alguma imagem com o nome itau-api-transfers executando este comando:
+
+	docker images
+	
+- Caso apareça execute o comando a seguir para criar o container pela primeira vez, não é necessário executar novamente:
+
+	docker run -d -p 9300:9300 --name itau-api-transfers --network itau-micro-net itau-api-transfers
+	
+- Parar o container:
+
+	docker stop itau-api-transfers
+	
+- Iniciar o container:
+
+	docker start itau-api-transfers
+
+# Atualizar a Aplicação no Docker
+
+- Para atualizar a aplicação no docker, primeiro pare o container:
+
+	docker stop itau-api-transfers
+
+- Compile a aplicação novamente conforme descrito na seção "Compilar a Aplicação"
+
+- Via linha de comando mude para o diretório src/main/docker e execute o comando a seguir:
+
+	docker cp itau-api-transfers*.jar itau-api-transfers:/root/itau-api-transfers.jar
+	
+- Reinicie o container:
+	
+	docker start itau-api-transfers
 
 # Transfers - Micro Serviço REST
 

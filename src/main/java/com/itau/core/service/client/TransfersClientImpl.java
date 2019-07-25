@@ -19,7 +19,7 @@ import com.itau.core.service.server.TransfersServer;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "TransfersImplService", targetNamespace = "http://server.service.core.itau.com/", wsdlLocation = "http://localhost:9090/services/transfers?wsdl")
+@WebServiceClient(name = "TransfersImplService", targetNamespace = "http://server.service.core.itau.com/", wsdlLocation = "http://itau-core:9090/services/transfers?wsdl")
 public class TransfersClientImpl
     extends Service
 {
@@ -32,7 +32,7 @@ public class TransfersClientImpl
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://localhost:9090/services/transfers?wsdl");
+            url = new URL("http://itau-core:9090/services/transfers?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
